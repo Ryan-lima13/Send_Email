@@ -61,7 +61,7 @@ try {
 
     //Recipients
     $mail->setFrom('sendtesteemail2021@gmail.com', 'Send Email');
-    $mail->addAddress('sendtesteemail2021@gmail.com', 'Joe User');     //Add a recipient
+    $mail->addAddress($mensagem->__get('para'));     //Add a recipient
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
@@ -72,12 +72,12 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'oi Eu sou o Assunto';
-    $mail->Body    = 'Oi eu sou o conteudo do <stong>e-mail</strong>';
-    $mail->AltBody = 'Oi eu sou o conteudo do e-mail';
+    $mail->Subject = $mensagem->__get('assunto');
+    $mail->Body    = $mensagem->__get('mensagem');
+    $mail->AltBody = 'E necessario utlizar um client que utilize HTML para ter acesso total ao conteúdo dessa mensagem';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'E-mail Enviado com sucesso!';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
